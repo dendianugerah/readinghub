@@ -8,7 +8,12 @@
           <p class="select-text leading-[30px]">
             {{ state.hero.subheadline }}
           </p>
-          <button class="">{{ state.hero.button }} </button>
+          <nuxt-link
+            to="/book/search"
+            class="hero-banner-container-hero-left-btn"
+          >
+            {{ state.hero.button }}
+          </nuxt-link>
         </div>
         <div class="hero-banner-container-hero-right">
           <img
@@ -23,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from '~/.nuxt/imports';
+import { reactive } from "~/.nuxt/imports";
 
 const state = reactive<{
   hero: {
@@ -67,9 +72,10 @@ const state = reactive<{
           @apply font-robotoslab text-[20px] leading-[25px];
         }
 
-        & > button {
+        &-btn {
           @apply mt-[24px] rounded-[32px] border-white border-[2px] w-[220px] h-[50px];
           @apply font-robotoslab text-white font-bold;
+          @apply flex justify-center items-center;
         }
       }
 

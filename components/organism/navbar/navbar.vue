@@ -6,7 +6,7 @@
           <NuxtLink
             to="/"
             class="navbar-link"
-            :class="{ active: $route.path == '/' }"
+            :class="{ active: $route.path == '/' || $route.path.startsWith('/book') }"
             >Beranda</NuxtLink
           >
           <NuxtLink
@@ -61,11 +61,13 @@
           <div class="cursor-pointer">
             <molecule-navbar-popup-notification />
           </div>
-          <img
-            src="/static/img/general/icon/bag-black.webp"
-            alt="search-icon"
-            class="w-[24px] h-[24px]"
-          />
+          <a href="/cart" class="cursor-pointer">
+            <img
+              src="/static/img/general/icon/bag-black.webp"
+              alt="search-icon"
+              class="w-[24px] h-[24px]"
+            />
+          </a>
         </div>
       </div>
     </div>

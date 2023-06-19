@@ -150,7 +150,7 @@ const state = reactive<{
       @apply relative h-full w-full items-center justify-center gap-3;
 
       &-header {
-        @apply mb-[32px] flex flex-col gap-[8px] pl-[30px] lg:mb-[80px];
+        @apply mb-[32px] flex flex-col gap-[8px] lg:mb-[80px];
 
         &-headline {
           @apply text-[40px] leading-[50px] font-bold font-ptserif;

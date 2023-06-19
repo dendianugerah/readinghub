@@ -69,7 +69,6 @@ const decrement = () => {
     @apply mx-auto max-w-7xl flex items-center justify-center;
     &-card {
       @apply rounded-[24px] bg-white flex flex-col;
-      @apply w-[579px];
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
       &-title {
@@ -89,24 +88,20 @@ const decrement = () => {
         }
 
         & > input {
-          @apply border rounded-2xl px-4 w-[440px] h-[50px] py-1 outline-none;
+          @apply border rounded-2xl px-4 flex h-[50px] py-1 outline-none;
           border-color: #272726;
         }
       }
     }
   }
 }
-.quantity-text {
-  @apply font-robotoslab text-[24px] pb-[2px] pt-[18px];
-}
 
 .input-group {
-  @apply border rounded-2xl px-4 w-[440px] h-[50px] py-1 outline-none;
+  @apply border rounded-2xl px-4 flex items-center h-[50px] py-1 outline-none;
   @apply text-[24px];
-  border-color: #272726;
 
   & > input {
-    @apply w-[380px] h-[20px];
+    @apply w-[380px] h-[20px] cursor-default;
     @apply text-[18px] text-center;
   }
 

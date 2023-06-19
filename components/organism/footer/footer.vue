@@ -172,7 +172,7 @@ const state = reactive<{
       }
 
       &-icon {
-        @apply my-[16px] flex flex-col justify-start;
+        @apply mt-[5px] flex flex-col justify-start;
 
         & > a > svg {
           @apply h-[24px] w-[24px] text-primary hover:text-white;
