@@ -64,7 +64,7 @@ const state = reactive<{
     image: "/static/img/donation/home/hero.png",
     data: {
       button: "Daftar Akun",
-      link: "/",
+      link: "/login",
     },
   },
 });

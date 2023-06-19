@@ -66,7 +66,7 @@
           </div>
         </div>
         <div class="navbar-bottom-container-bar">
-          <div class="cursor-pointer">
+          <div>
             <molecule-navbar-popup-notification />
           </div>
           <a href="/cart" class="cursor-pointer">
@@ -131,7 +131,7 @@ const isLoggedIn = computed(() => {
       }
 
       &-bar {
-        @apply flex justify-end;
+        @apply flex justify-end gap-[30px];
       }
     }
   }

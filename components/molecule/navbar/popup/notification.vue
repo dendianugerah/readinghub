@@ -8,35 +8,70 @@
   </button>
   <div
     v-if="isModalOpen"
-    class="molecule-navbar-download-app-overlay"
+    class="molecule-navbar-notification-app-overlay"
     @click="handleToggleModal"
   />
-  <div v-if="isModalOpen" class="molecule-navbar-download-app-menu">
-    <div class="molecule-navbar-download-app-menu-wrapper">
-      <div class="molecule-navbar-download-app-menu-wrapper-body">
-        <div class="modal-body-download-left">
-          <div class="modal-body-download-left-wording">
-            <p class="modal-body-download-left-wording-subtitle">
-              {{ state.text }}
-            </p>
-            <div class="modal-body-download-left-wording-cancel">
-              <button @click="handleToggleModal">
-                <img
-                  src="/static/img/general/icon/cancel.webp"
-                  alt="cancel-icon"
-                  class="h-[16px] w-[16px]"
-                />
-              </button>
+  <transition name="fade" @enter="handleEnter" @leave="handleLeave">
+    <div v-if="isModalOpen" class="molecule-navbar-notification-app-menu">
+      <div class="molecule-navbar-notification-app-menu-wrapper">
+        <div class="molecule-navbar-notification-app-menu-wrapper-body">
+          <div class="modal-body-notification-left">
+            <div class="modal-body-notification-left-wording">
+              <p class="modal-body-notification-left-wording-subtitle">
+                {{ state.text }}
+              </p>
+              <div class="modal-body-notification-left-wording-cancel">
+                <button @click="handleToggleModal">
+                  <img
+                    src="/static/img/general/icon/cancel.webp"
+                    alt="cancel-icon"
+                    class="h-[16px] w-[16px]"
+                  />
+                </button>
+              </div>
+            </div>
+            <hr />
+            <div
+              class="modal-body-notification-left-wording-card"
+              v-for="(LoremIpsum, index) in loremIpsums"
+              :key="index"
+            >
+              <div class="modal-body-notification-left-wording-card-content">
+                <h1>{{ LoremIpsum.title }}</h1>
+                <p>{{ LoremIpsum.content }}</p>
+              </div>
+              <div class="modal-body-notification-left-wording-card-img">
+                <img src="/static/img/general/icon/mark.png" alt="" />
+              </div>
             </div>
           </div>
-          <hr />
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup lang="ts">
+import { ref, reactive } from "vue";
+
+const loremIpsums = [
+  {
+    title: "Lorem Ipsum 1",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+  },
+  {
+    title: "Lorem Ipsum 2",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+  },
+  {
+    title: "Lorem Ipsum 3",
+    content:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+  },
+];
+
 const state = reactive<{
   text: string;
 }>({
@@ -44,26 +79,47 @@ const state = reactive<{
 });
 
 const isModalOpen = ref(false);
+const dropBrightness = ref(false);
 
-const handleToggleModal = () => (isModalOpen.value = !isModalOpen.value);
+const handleToggleModal = () => {
+  isModalOpen.value = !isModalOpen.value;
+  dropBrightness.value = !dropBrightness.value;
+};
+
+const handleEnter = (el: any) => {
+  el.style.opacity = "0";
+  setTimeout(() => {
+    el.style.opacity = "1";
+  }, 0); 
+};
+
+const handleLeave = (el: any) => {
+  el.style.opacity = "1";
+  setTimeout(() => {
+    el.style.opacity = "0";
+  }, 0); 
+};
 </script>
 
 <style scoped lang="postcss">
-.molecule-navbar-download-app {
+.molecule-navbar-notification-app {
   @apply text-sm font-bold;
 
   &-overlay {
     @apply absolute top-0 left-0;
+    transition: filter 0.3s ease-in-out;
+    z-index: 998;
   }
 
   &-menu {
     @apply relative;
+    z-index: 999;
 
     &-wrapper {
-      @apply absolute right-6 top-full w-[auto] rounded-[12px] pt-[14px] text-sm text-[#71717a];
+      @apply absolute right-6 top-full w-[auto] rounded-[12px] pt-[14px];
 
       &-body {
-        @apply flex w-full gap-[24px] rounded-[12px] bg-white p-[20px];
+        @apply flex w-[576px] gap-[24px] rounded-[12px] bg-white p-[20px];
         box-shadow: 0px 0px 1px rgba(13, 17, 23, 0.15),
           0px 8px 10px -2px rgba(13, 17, 23, 0.1),
           0px 16px 25px -2px rgba(13, 17, 23, 0.1);
@@ -72,14 +128,36 @@ const handleToggleModal = () => (isModalOpen.value = !isModalOpen.value);
   }
 }
 
-.modal-body-download {
+.modal-body-notification {
   @apply flex gap-[24px];
 
   &-left {
-    @apply flex w-[320px] flex-col gap-[20px];
+    @apply flex w-full flex-col gap-[15px];
 
     &-wording {
       @apply flex flex-row gap-[16px] justify-between;
+
+      &-card {
+        @apply rounded-xl bg-white flex flex-row py-[16px] px-[32px];
+        @apply gap-[30px];
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        &-content {
+          @apply font-robotoslab;
+
+          & > h1 {
+            @apply font-bold text-[16px];
+          }
+
+          & > p {
+            @apply text-[13px] text-secondary;
+          }
+        }
+
+        &-img {
+          @apply flex flex-col justify-center;
+        }
+      }
 
       &-subtitle {
         @apply select-text text-md text-black font-bold leading-[24px];
@@ -102,13 +180,10 @@ const handleToggleModal = () => (isModalOpen.value = !isModalOpen.value);
       }
     }
   }
+}
 
-  &-right {
-    @apply flex flex-col;
-
-    &-barcode {
-      @apply h-[96px] !w-[96px];
-    }
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease-in-out;
 }
 </style>
