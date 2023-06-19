@@ -44,6 +44,15 @@
                 <img src="/static/img/general/icon/mark.png" alt="" />
               </div>
             </div>
+            <div class="modal-body-notification-left">
+              <button
+                @click="handleReadAll"
+                class="modal-body-notification-left-button-item"
+              >
+                <img src="/static/img/general/icon/checks.png" alt="" />
+                Tandai sudah dibaca
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -56,19 +65,19 @@ import { ref, reactive } from "vue";
 
 const loremIpsums = [
   {
-    title: "Lorem Ipsum 1",
+    title: "Admin",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.....",
   },
   {
-    title: "Lorem Ipsum 2",
+    title: "Admin",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+      "Mas, tolong kembalikan buku yang kamu pinjam ya, jangan sampai saya panggilkan debt collector ya",
   },
   {
-    title: "Lorem Ipsum 3",
+    title: "Admin",
     content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+      "Halo, tolong kembalikan buku yang kamu pinjam ya, sudah telat 2 minggu mau diapakan bukunya?",
   },
 ];
 
@@ -90,14 +99,22 @@ const handleEnter = (el: any) => {
   el.style.opacity = "0";
   setTimeout(() => {
     el.style.opacity = "1";
-  }, 0); 
+  }, 0);
 };
 
 const handleLeave = (el: any) => {
   el.style.opacity = "1";
   setTimeout(() => {
     el.style.opacity = "0";
-  }, 0); 
+  }, 0);
+};
+
+const handleReadAll = () => {
+  loremIpsums.splice(0, loremIpsums.length);
+  isModalOpen.value = false;
+  setTimeout(() => {
+    isModalOpen.value = true;
+  }, 0);
 };
 </script>
 
@@ -165,6 +182,14 @@ const handleLeave = (el: any) => {
 
       &-cancel {
         @apply cursor-pointer;
+      }
+    }
+
+    &-button-item {
+      @apply flex gap-[8px] items-center text-[13px] text-black font-bold leading-[24px] justify-end;
+
+      & > img {
+        @apply h-[16px] w-[16px];
       }
     }
 

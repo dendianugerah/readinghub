@@ -8,7 +8,6 @@
           </h1>
           <a
             href="#"
-            target="__blank"
             class="content-top-container-content-header-link"
           >
             {{ state.readAllArticle }}

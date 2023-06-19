@@ -13,7 +13,6 @@
               v-for="(icon, index) in state.discover.icon"
               :key="index"
               :href="icon.url"
-              target="_blank"
             >
             <div class="footer-content-discover-icon-item">
               <img :src="icon.name" alt="icon" />

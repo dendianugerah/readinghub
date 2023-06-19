@@ -8,7 +8,6 @@
           </h1>
           <a
             href="#"
-            target="__blank"
             class="content-bottom-container-content-header-link"
           >
             {{ state.readAllArticle }}
@@ -40,7 +39,6 @@
               <a
                 class="content-bottom-container-content-list-card-content-link"
                 :href="item.link"
-                target="__blank"
               >
                 <span class="content-bottom-container-content-list-card-content-link-ctr">
                   {{ state.readmore }}
