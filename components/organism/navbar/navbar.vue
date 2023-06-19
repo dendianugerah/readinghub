@@ -6,7 +6,12 @@
           <NuxtLink
             to="/"
             class="navbar-link"
-            :class="{ active: $route.path == '/' || $route.path.startsWith('/book') }"
+            :class="{
+              active:
+                $route.path == '/' ||
+                $route.path.startsWith('/book') ||
+                $route.path.startsWith('/cart'),
+            }"
             >Beranda</NuxtLink
           >
           <NuxtLink
@@ -29,7 +34,10 @@
           >
         </div>
         <div class="navbar-container-upper-right">
-          <NuxtLink to="/login">Masuk/Daftar</NuxtLink>
+          <span v-if="isLoggedIn">
+            <NuxtLink to="/login">Speeeddd</NuxtLink>
+          </span>
+          <NuxtLink v-else to="/login">Masuk/Daftar</NuxtLink>
         </div>
       </div>
     </div>
@@ -43,8 +51,8 @@
             <div class="grid-item">
               <select class="focus:outline-none bg-[#fafafa] cursor-pointer">
                 <option>Kategori</option>
-                <option>Option 2</option>
-                <option>Option 3</option>
+                <option>Multimedia</option>
+                <option>Hukum</option>
               </select>
             </div>
             <div class="grid-item">
@@ -73,6 +81,16 @@
     </div>
   </section>
 </template>
+
+<script setup lang="ts">
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+const isLoggedIn = computed(() => {
+  return route.path !== "/login" && route.path !== "/register";
+});
+</script>
 
 <style lang="postcss" scoped>
 .navbar {

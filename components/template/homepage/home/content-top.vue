@@ -22,17 +22,20 @@
             class="content-top-container-content-list-card"
           >
             <div class="content-top-container-content-list-card-img">
-              <img
-                :src="item.img_url"
-                alt="img"
-                @mouseenter="showDetails(index, true)"
-                @mouseleave="showDetails(index, false)"
-              />
+              <NuxtLink to="/book/detail">
+                <img
+                  :src="item.img_url"
+                  class="content-top-container-content-list-card-img-hover"
+                  alt="img"
+                  @mouseenter="showDetails(index, true)"
+                  @mouseleave="showDetails(index, false)"
+                />
+              </NuxtLink>
               <div
                 v-if="state.showDetails[index]"
                 class="content-top-container-content-list-card-img-overlay"
               >
-                <button class="see-details">Lihat Detail Buku</button>
+                <span> Lihat Detail Buku </span>
               </div>
             </div>
 
@@ -53,11 +56,12 @@
               <a
                 class="content-top-container-content-list-card-content-link"
                 :href="item.link"
-                target="__blank"
               >
-              <span class="content-top-container-content-list-card-content-link-ctr">
-                {{ state.readmore }}
-              </span>
+                <span
+                  class="content-top-container-content-list-card-content-link-ctr"
+                >
+                  {{ state.readmore }}
+                </span>
               </a>
             </div>
           </div>
@@ -68,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from '~/.nuxt/imports';
+import { reactive } from "~/.nuxt/imports";
 
 const state = reactive<{
   headline: string;
@@ -179,15 +183,19 @@ const showDetails = (index: number, isHovering: boolean) => {
           &-img {
             @apply w-full hover:bg-opacity-5 hover:bg-grey cursor-pointer relative;
 
-            & > img {
-              @apply w-full rounded-t-[12px] object-cover md:h-[320px];
+            &-hover {
+              transition: filter 0.3s ease-in-out;
+
+              &:hover {
+                filter: brightness(0.3);
+              }
             }
 
             &-overlay {
-              @apply top-[100px];
+              @apply top-[100px] right-[100px];
               position: absolute;
 
-              & > button {
+              & > span {
                 color: white;
                 font-weight: bold;
               }

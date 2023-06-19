@@ -60,7 +60,7 @@ const state = reactive<{
   };
 }>({
   hero: {
-    headline: "Jangan lewatkan kesempatan ini dan daftarlah sekarang !",
+    headline: "Jangan lewatkan kesempatan ini dan daftarlah sekarang!",
     image: "/static/img/donation/home/hero.png",
     data: {
       button: "Daftar Akun",
