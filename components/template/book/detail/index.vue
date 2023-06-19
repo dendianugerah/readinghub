@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="center-button">
-      <router-link to="/mid" class="back-link">Kembali</router-link>
+      <router-link to="/" class="back-link">Kembali</router-link>
     </div>
   </div>
 </template>

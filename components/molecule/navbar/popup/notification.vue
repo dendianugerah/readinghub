@@ -1,11 +1,11 @@
 <template>
-  <atom-button @click="handleToggleModal">
+  <button @click="handleToggleModal">
     <img
       src="/static/img/general/icon/notification.webp"
       alt="notification-icon"
       class="w-[24px] h-[24px]"
     />
-  </atom-button>
+  </button>
   <div
     v-if="isModalOpen"
     class="molecule-navbar-download-app-overlay"
@@ -20,13 +20,13 @@
               {{ state.text }}
             </p>
             <div class="modal-body-download-left-wording-cancel">
-              <atom-button @click="handleToggleModal">
+              <button @click="handleToggleModal">
                 <img
                   src="/static/img/general/icon/cancel.webp"
                   alt="cancel-icon"
                   class="h-[16px] w-[16px]"
                 />
-              </atom-button>
+              </button>
             </div>
           </div>
           <hr />

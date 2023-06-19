@@ -15,7 +15,12 @@
               :href="icon.url"
               target="_blank"
             >
-              <icon :name="icon.name" />
+            <div class="footer-content-discover-icon-item">
+              <img :src="icon.name" alt="icon" />
+              <span class="footer-content-discover-icon-text">
+                {{ icon.text  }}
+              </span>
+            </div>
             </a>
           </div>
         </div>
@@ -38,6 +43,7 @@
         </div>
       </div>
       <div class="footer-copyright">
+        <img :src="state.footerImg" alt="footer-img" />
         <div>
           <p class="text-[12px] leading-[18px] md:text-sm md:leading-[20px]">
             {{ state.copyright }}
@@ -58,6 +64,7 @@ const state = reactive<{
     icon: {
       name: string;
       url: string;
+      text: string;
     }[];
   };
   menu: {
@@ -67,30 +74,30 @@ const state = reactive<{
       url: string;
     }[];
   }[];
+  footerImg: string;
   copyright: string;
 }>({
   discover: {
     about: {
       title: "ABOUT US",
       description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad ut reprehenderit eius id dolorem sapiente, laudantium quasi animi itaque temporibus?",
+        "ReadingHub adalah adalah layanan peminjaman buku yang berkomitmen untuk memberikan pengalaman yang menyenangkan bagi para pelanggan kami.",
     },
     icon: [
       {
-        name: "carbon:logo-linkedin",
-        url: "https://www.linkedin.com/",
+        name: "/static/img/general/icon/footer-phone.png",
+        url: "#",
+        text: "admin@readinghub.com",
       },
       {
-        name: "carbon:logo-facebook",
-        url: "https://www.facebook.com/",
+        name: "/static/img/general/icon/footer-message.png",
+        url: "#",
+        text: "(+62) 17-08-1945",
       },
       {
-        name: "carbon:logo-youtube",
-        url: "https://www.youtube.com/",
-      },
-      {
-        name: "carbon:logo-twitter",
-        url: "https://twitter.com/",
+        name: "/static/img/general/icon/footer-pin.png",
+        url: "#",
+        text: "Yogyakarta",
       },
     ],
   },
@@ -125,6 +132,7 @@ const state = reactive<{
       ],
     },
   ],
+  footerImg: "/static/img/general/icon/footer.png",
   copyright:
     "Copyright ©2023 ReadingHub - All Rights Reserved",
 });
@@ -147,27 +155,31 @@ const state = reactive<{
     @apply flex flex-col gap-[40px] lg:flex-row 2xl:gap-[136px] bg-tertiary;
 
     &-discover {
-      @apply mt-[-24px] w-[276px] md:mt-0 lg:text-left;
+      @apply mt-[-24px] w-[450px] md:mt-0 lg:text-left;
 
       &-about {
         @apply flex flex-col gap-[8px];
-        white-space: pre-wrap;
 
         & > h1 {
-          @apply select-text text-[18px] font-medium leading-[28px] text-primary;
+          @apply select-text text-[18px] font-bold leading-[28px] text-primary;
           @apply md:text-xl md:leading-[30px];
         }
+
         & > p {
           @apply select-text text-sm leading-[20px] text-primary;
-          @apply md:text-md md:leading-[24px];
+          @apply md:text-md md:leading-[24px] pr-[100px] sm:pr-[0px];
         }
       }
 
       &-icon {
-        @apply my-[16px] flex justify-start gap-[30px];
+        @apply my-[16px] flex flex-col justify-start;
 
         & > a > svg {
           @apply h-[24px] w-[24px] text-primary hover:text-white;
+        }
+
+        &-item {
+          @apply flex flex-row items-center gap-[8px] mb-[8px];
         }
       }
     }
@@ -192,6 +204,11 @@ const state = reactive<{
     @apply border-t border-white border-opacity-25 pt-[24px] md:pt-[48px];
     @apply flex flex-col items-center justify-between;
     @apply gap-[20px] text-center;
+
+    
+    & > img {
+      @apply w-[270px] pb-[55px];
+    }
   }
 
   &-switcher {
