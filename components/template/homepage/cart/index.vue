@@ -4,26 +4,25 @@
       <div class="cart-container-wrapper">
         <div class="cart-container-wrapper-bag">
           <h1>Tas</h1>
-          <div class="cart-container-wrapper-bag-card">
+          <div
+            v-for="(item, index) in cartItems"
+            :key="index"
+            class="cart-container-wrapper-bag-card"
+          >
             <div class="cart-container-wrapper-bag-card-image">
-              <img src="/static/img/homepage/cart/book-1.png" alt="" />
+              <img :src="item.image" alt="" />
             </div>
             <div class="cart-container-wrapper-bag-card-content">
-              <h1>Pemanfaatan Sumber Daya Nuklir Ramah Lingkungan</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa
-                facilis debitis maxime perspiciatis mollitia reprehenderit
-                deleniti voluptatem voluptates! Neque, labore cupiditate. Quos
-                eaque quasi illum. Ab exercitationem eligendi quasi praesentium.
-              </p>
+              <h1>{{ item.title }}</h1>
+              <p>{{ item.description }}</p>
               <div class="cart-container-wrapper-bag-card-content-input">
-                <button @click="decrement">-</button>
-                <input type="text" :value="quantity" readonly />
-                <button @click="increment">+</button>
+                <button @click="decrement(index)">-</button>
+                <input type="text" :value="item.quantity" readonly />
+                <button @click="increment(index)">+</button>
               </div>
             </div>
             <div class="cart-container-wrapper-bag-card-button">
-              <a href="/cart" class="cursor-pointer">
+              <a class="cursor-pointer" @click="removeItem(index)">
                 <img
                   src="/static/img/homepage/cart/trash-can.png"
                   alt="search-icon"
@@ -31,6 +30,10 @@
                 />
               </a>
             </div>
+          </div>
+          <div class="cart-container-wrapper-bag-total">
+            <p>Total Buku:</p>
+            <span>{{ totalQuantity }}</span>
           </div>
         </div>
         <div class="cart-container-wrapper-form">
@@ -53,24 +56,24 @@
               <input type="date" />
               <h1>Tanggal Pengembalian</h1>
               <input type="date" />
-            </div>
-            <div class="center-button">
-              <a
-                class="donation-form-container-card-link"
-                href="/donation/success"
-              >
-                <span class="donation-form-container-card-link-ctr">
-                  Pinjam
-                </span>
-              </a>
-              <a
-                class="donation-form-container-card-link"
-                href="/donation/success"
-              >
-                <span class="donation-form-container-card-link-ctr">
-                  Pinjam
-                </span>
-              </a>
+              <div class="cart-container-wrapper-form-card-content-btn">
+                <nuxt-link
+                  to="/book/search"
+                  class="cart-container-wrapper-form-card-content-btn-cancel"
+                >
+                  Batal
+                </nuxt-link>
+                <nuxt-link
+                  class="cart-container-wrapper-form-card-content-btn-link"
+                  to="/"
+                >
+                  <span
+                    class="cart-container-wrapper-form-card-content-btn-link-ctr"
+                  >
+                    Pinjam
+                  </span>
+                </nuxt-link>
+              </div>
             </div>
           </div>
         </div>
@@ -80,24 +83,62 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
-const quantity = ref(0);
+const cartItems = ref([
+  {
+    image: "/static/img/homepage/cart/book-1.png",
+    title: "Belajar Ngoding itu Menyenangkan Jika Bersama Naufal",
+    description:
+      "Ternyata belajar bahasa komputer itu tidak sulit-sulit amat ah! Di buku ini akan lengkap membahas mengenai bagaimana Naufal (yang awalnya adalah bergelut di bidang kayu seperti pak Jokowi) dapat menjadi master programming hanya dalam waktu 2 bulan.",
+    quantity: 0,
+  },
+  {
+    image: "/static/img/homepage/cart/book-2.png",
+    title: "Lulus Ujian Nasional dengan Nilai Sempurna",
+    description:
+      "Ujian itu mudah jika kamu tahu caranya. Di buku ini akan dijelaskan bagaimana caranya agar kamu dapat lulus ujian nasional dengan nilai sempurna. Diajarkan oleh murid yang pernah mendapatkan nilai sempurna di ujian nasional dan ujian apapun. Ain",
+    quantity: 1,
+  },
+  {
+    image: "/static/img/homepage/cart/book-3.png",
+    title: "Pengenalan Bahasa Inggris untuk Anak-Anak",
+    description:
+      "IELTS, TOEFL, TOEIC, dan lain-lain. Apa itu semua? Aku, Novita. Aku akan membantumu untuk memahami bahasa Inggris dengan mudah. Ayo belajar bersama! Huahahahahahahahhaahhaahahhahahahahahhhahahahahhahahahahahhhahahahhahahahhahahaha",
+    quantity: 2,
+  },
+  {
+    image: "/static/img/homepage/cart/book-4.png",
+    title: "Sebuah Seni untuk Bersikap Bodo Ahmad",
+    description:
+      "Hai, aku Dhito dan aku adalah seorang bodo amat. Aku hanya ingin hidupku bahagia dan tidak peduli dengan orang lain. Sampai suatu hari, aku bertemu dengan seseorang yang membuatku berpikir ulang tentang hidupku. Seseorang itu bernama Ahmad.",
+    quantity: 1,
+  },
+]);
 
-const increment = () => {
-  quantity.value++;
+const increment = (index) => {
+  cartItems.value[index].quantity++;
 };
 
-const decrement = () => {
-  if (quantity.value > 0) {
-    quantity.value--;
+const decrement = (index) => {
+  if (cartItems.value[index].quantity > 0) {
+    cartItems.value[index].quantity--;
   }
 };
+
+const removeItem = (index) => {
+  cartItems.value.splice(index, 1);
+};
+
+// Calculate the total quantity
+const totalQuantity = computed(() => {
+  return cartItems.value.reduce((total, item) => total + item.quantity, 0);
+});
 </script>
 
 <style scoped lang="postcss">
 .cart {
-  @apply pt-[64px];
+  @apply pt-[64px] pb-[80px];
 
   &-container {
     @apply max-w-7xl mx-auto;
@@ -117,7 +158,7 @@ const decrement = () => {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
           &-image {
-            @apply w-[390px] h-[154px] pr-[16px];
+            @apply w-[450px] h-[154px] pr-[16px];
           }
 
           &-content {
@@ -148,6 +189,20 @@ const decrement = () => {
             @apply flex flex-col justify-end mb-[10px] mr-[14px];
           }
         }
+
+        &-total {
+          @apply rounded-[24px] bg-primary flex flex-row py-[16px] px-[16px] mt-[32px];
+          @apply justify-between text-tertiary;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+          & > p {
+            @apply font-robotoslab font-bold text-[16px];
+          }
+
+          & > span {
+            @apply font-robotoslab font-bold text-[16px] pr-[26px];
+          }
+        }
       }
 
       &-form {
@@ -162,7 +217,7 @@ const decrement = () => {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
           &-content {
-            @apply flex flex-col justify-center px-[28px];
+            @apply flex h-full flex-col justify-between px-[28px] pb-[30px];
 
             & > h1 {
               @apply font-robotoslab text-[18px] pb-[2px] pt-[18px];
@@ -172,22 +227,29 @@ const decrement = () => {
               @apply border rounded-2xl px-4 flex h-[50px] py-1 outline-none;
               border-color: #272726;
             }
+
+            &-btn {
+              @apply flex flex-row justify-center mt-[24px] gap-[10px];
+
+              &-link {
+                @apply rounded-[32px] w-[185px] h-[45px] bg-black;
+                @apply font-bold font-robotoslab text-white flex items-center justify-center;
+
+                &-ctr {
+                  @apply text-center;
+                }
+              }
+
+              &-cancel {
+                @apply rounded-[32px] border-primary border-[2px] w-[185px] h-[45px];
+                @apply font-robotoslab text-primary font-bold;
+                @apply flex justify-center items-center;
+              }
+            }
           }
         }
       }
     }
   }
-}
-.center-button {
-  @apply flex justify-center mt-4;
-}
-
-.donation-form-container-card-link {
-  @apply rounded-[32px] w-[186px] h-[54px] bg-black;
-  @apply font-bold font-robotoslab text-white flex items-center justify-center my-[40px];
-}
-
-.donation-form-container-card-link-ctr {
-  @apply text-center;
 }
 </style>
