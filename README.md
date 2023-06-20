@@ -31,3 +31,5 @@ pnpm run dev
 # yarn
 yarn dev
 ```
+
+Feel free to change the `port` inside the `nuxt.config.js` file.
