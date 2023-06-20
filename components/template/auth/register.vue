@@ -38,6 +38,31 @@
                   {{ state.hero.data.button }}
                 </span>
               </a>
+              <nuxt-link
+                to="/register"
+                class="hero-banner-container-hero-right-form-reg"
+              >
+                <img
+                  src="/static/img/homepage/auth/google-icon.png"
+                  alt="google"
+                  class="mr-[10px]"
+                />
+                Daftar dengan Google
+              </nuxt-link>
+              <div
+                class="flex items-center justify-center pt-[32px] font-robotoslab"
+              >
+                <hr class="flex-grow border-t border-gray-300 mr-2" />
+                <span
+                  >Sudah mempunyai akun?
+                  <strong class="font-bold"
+                    ><nuxt-link to="/register" class="text-blue-500"
+                      >Login</nuxt-link
+                    ></strong
+                  ></span
+                >
+                <hr class="flex-grow border-t border-gray-300 ml-2" />
+              </div>
             </div>
           </section>
         </div>
@@ -72,7 +97,7 @@ const state = reactive<{
 
 <style scoped lang="postcss">
 .hero-banner {
-  @apply relative  pt-[32px] md:pt-[80px] mb-[80px];
+  @apply relative  pt-[32px] md:pt-[80px] mb-[80px] pb-[120px];
   &-container {
     @apply mx-auto h-full max-w-7xl items-center justify-between;
 
@@ -111,7 +136,13 @@ const state = reactive<{
               }
             }
           }
+          &-reg {
+            @apply mt-[24px] rounded-[32px] border-primary border-[2px] w-full h-[50px];
+            @apply text-[#454545];
+            @apply flex justify-center items-center;
+          }
         }
+
       }
 
       &-left {

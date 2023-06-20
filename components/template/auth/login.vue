@@ -42,14 +42,14 @@
                   alt="google"
                   class="mr-[10px]"
                 />
-                Daftar dengan Google
+                Login dengan Google
               </nuxt-link>
               <div
                 class="flex items-center justify-center pt-[32px] font-robotoslab"
               >
                 <hr class="flex-grow border-t border-gray-300 mr-2" />
                 <span
-                  >Didn't have an account?
+                  >Belum mempunyai akun?
                   <strong class="font-bold"
                     ><nuxt-link to="/register" class="text-blue-500"
                       >Register</nuxt-link
