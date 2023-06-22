@@ -33,12 +33,12 @@
             <hr />
             <div
               class="modal-body-notification-left-wording-card"
-              v-for="(LoremIpsum, index) in loremIpsums"
+              v-for="(notifications, index) in notification"
               :key="index"
             >
               <div class="modal-body-notification-left-wording-card-content">
-                <h1>{{ LoremIpsum.title }}</h1>
-                <p>{{ LoremIpsum.content }}</p>
+                <h1>{{ notifications.title }}</h1>
+                <p>{{ notifications.content }}</p>
               </div>
               <div class="modal-body-notification-left-wording-card-img">
                 <img src="/static/img/general/icon/mark.png" alt="" />
@@ -63,7 +63,7 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
 
-const loremIpsums = [
+const notification = [
   {
     title: "Admin",
     content:
@@ -110,7 +110,7 @@ const handleLeave = (el: any) => {
 };
 
 const handleReadAll = () => {
-  loremIpsums.splice(0, loremIpsums.length);
+  notification.splice(0, notification.length);
   isModalOpen.value = false;
   setTimeout(() => {
     isModalOpen.value = true;
