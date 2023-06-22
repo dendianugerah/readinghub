@@ -109,7 +109,7 @@ const cartItems = ref([
   },
   {
     image: "/static/img/homepage/cart/book-4.png",
-    title: "Sebuah Seni untuk Bersikap Bodo Ahmad",
+  title: "Sebuah Seni untuk Bersikap Bodo Ahmad",
     description:
       "Hai, aku Dhito dan aku adalah seorang bodo amat. Aku hanya ingin hidupku bahagia dan tidak peduli dengan orang lain. Sampai suatu hari, aku bertemu dengan seseorang yang membuatku berpikir ulang tentang hidupku. Seseorang itu bernama Ahmad.",
     quantity: 1,

@@ -118,7 +118,7 @@ const state = reactive<{
         }
 
         &-form {
-          @apply flex;
+          @apply flex font-robotoslab;
 
           &-input {
             @apply w-[384px] h-[48px] border-b-[1px] border-[#E0E0E0] text-sm;
@@ -129,15 +129,15 @@ const state = reactive<{
 
             &-link {
               @apply mt-[18px] rounded-[32px] w-[384px] h-[54px] bg-black;
-              @apply font-bold font-robotoslab text-white flex items-center justify-center;
+              @apply font-bold text-white flex items-center justify-center;
 
               &-ctr {
-                @apply text-center;
+                @apply text-center font-bold;
               }
             }
           }
           &-reg {
-            @apply mt-[24px] rounded-[32px] border-primary border-[2px] w-full h-[50px];
+            @apply mt-[24px] rounded-[32px] border-primary border-[2px] w-full h-[50px] font-bold;
             @apply text-[#454545];
             @apply flex justify-center items-center;
           }

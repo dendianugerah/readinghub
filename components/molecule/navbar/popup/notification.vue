@@ -157,7 +157,7 @@ const handleReadAll = () => {
       &-card {
         @apply rounded-xl bg-white flex flex-row py-[16px] px-[32px];
         @apply gap-[30px];
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
         &-content {
           @apply font-robotoslab;
