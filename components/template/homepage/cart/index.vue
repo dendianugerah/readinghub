@@ -65,7 +65,7 @@
                 </nuxt-link>
                 <nuxt-link
                   class="cart-container-wrapper-form-card-content-btn-link"
-                  to="/"
+                  to="/cart/success"
                 >
                   <span
                     class="cart-container-wrapper-form-card-content-btn-link-ctr"
