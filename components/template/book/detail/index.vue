@@ -95,7 +95,7 @@ function formatKey(key: string): string {
   }
 
   &-container {
-    @apply grid grid-cols-3 gap-[33px];
+    @apply md:grid md:grid-cols-3 gap-[33px] px-[16px] md:px-[0px];
 
     &-content {
       & > h1 {

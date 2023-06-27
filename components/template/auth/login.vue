@@ -92,19 +92,19 @@ const state = reactive<{
 
 <style scoped lang="postcss">
 .hero-banner {
-  @apply relative  pt-[32px] md:pt-[80px] mb-[80px];
+  @apply relative pt-[32px] md:pt-[80px] md:mb-[80px] pb-[120px] overflow-hidden px-[16px] md:px-[0px];
+  
   &-container {
     @apply mx-auto h-full max-w-7xl items-center justify-between;
 
     &-hero {
-      @apply flex flex-col items-start justify-between md:flex-row md:gap-[20px];
-      @apply px-[1rem] sm:px-[2rem] lg:px-[4rem] 2xl:px-0;
+      @apply items-start justify-between flex flex-row md:gap-[20px];
 
       &-right {
         @apply flex flex-col md:w-[584px];
 
         h1 {
-          @apply select-text text-[34px] font-ptserif font-bold w-[384px];
+          @apply select-text text-[34px] font-ptserif font-bold md:w-[384px];
         }
 
         & > p {
@@ -116,8 +116,9 @@ const state = reactive<{
           @apply flex font-robotoslab;
 
           &-input {
-            @apply w-[384px] h-[48px] border-b-[1px] border-[#E0E0E0] text-sm;
+            @apply w-[340px] md:w-[384px] md:h-[48px] border-b-[1px] border-[#E0E0E0] text-sm;
             @apply select-text text-[#1A1A1A] placeholder-[#828282];
+
             :focus {
               @apply outline-none;
             }
@@ -141,9 +142,10 @@ const state = reactive<{
       }
 
       &-left {
+        @apply hidden md:flex;
         &-image {
           @apply mb-[68px] mt-[40px] rounded-[16px] object-cover;
-          @apply md:mb-0 md:mt-0 md:h-auto md:w-auto lg:h-[480px] lg:w-[500px];
+          @apply h-full w-[250px] md:mb-0 md:mt-0 md:h-auto md:w-auto lg:h-[480px] lg:w-[500px];
         }
       }
     }

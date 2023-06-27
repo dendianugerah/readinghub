@@ -19,13 +19,13 @@
                 class="hero-banner-container-hero-right-form-input mb-[10px] mt-[30px]"
               />
               <input
-                type="password"
-                placeholder="Password"
+                type="text"
+                placeholder="Email"
                 class="hero-banner-container-hero-right-form-input my-[10px]"
               />
               <input
-                type="text"
-                placeholder="Email"
+                type="password"
+                placeholder="Password"
                 class="hero-banner-container-hero-right-form-input my-[10px]"
               />
               <a
@@ -56,7 +56,7 @@
                 <span
                   >Sudah mempunyai akun?
                   <strong class="font-bold"
-                    ><nuxt-link to="/register" class="text-blue-500"
+                    ><nuxt-link to="/login" class="text-blue-500"
                       >Login</nuxt-link
                     ></strong
                   ></span
@@ -97,13 +97,13 @@ const state = reactive<{
 
 <style scoped lang="postcss">
 .hero-banner {
-  @apply relative  pt-[32px] md:pt-[80px] mb-[80px] pb-[120px];
+  @apply relative pt-[32px] md:pt-[80px] md:mb-[80px] pb-[120px] overflow-hidden px-[16px] md:px-[0px];
+
   &-container {
     @apply mx-auto h-full max-w-7xl items-center justify-between;
 
     &-hero {
       @apply flex flex-col items-start justify-between md:flex-row md:gap-[20px];
-      @apply px-[1rem] sm:px-[2rem] lg:px-[4rem] 2xl:px-0;
 
       &-right {
         @apply flex flex-col md:w-[584px];
@@ -121,14 +121,15 @@ const state = reactive<{
           @apply flex font-robotoslab;
 
           &-input {
-            @apply w-[384px] h-[48px] border-b-[1px] border-[#E0E0E0] text-sm;
+            @apply w-[340px] md:w-[384px] md:h-[48px] border-b-[1px] border-[#E0E0E0] text-sm;
             @apply select-text text-[#1A1A1A] placeholder-[#828282];
+
             :focus {
               @apply outline-none;
             }
 
             &-link {
-              @apply mt-[18px] rounded-[32px] w-[384px] h-[54px] bg-black;
+              @apply mt-[18px] rounded-[32px] w-full h-[54px] bg-black;
               @apply font-bold text-white flex items-center justify-center;
 
               &-ctr {
@@ -146,9 +147,10 @@ const state = reactive<{
       }
 
       &-left {
+        @apply hidden md:flex;
         &-image {
           @apply mb-[68px] mt-[40px] rounded-[16px] object-cover;
-          @apply md:mb-0 md:mt-0 md:h-auto md:w-auto lg:h-[480px] lg:w-[500px];
+          @apply h-full w-[250px] md:mb-0 md:mt-0 md:h-auto md:w-auto lg:h-[480px] lg:w-[500px];
         }
       }
     }
