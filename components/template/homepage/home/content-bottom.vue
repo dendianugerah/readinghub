@@ -6,12 +6,12 @@
           <h1 class="content-bottom-container-content-header-headline">
             {{ state.headline }}
           </h1>
-          <a
-            href="#"
+          <NuxtLink
             class="content-bottom-container-content-header-link"
+            to="book/search"
           >
             {{ state.readAllArticle }}
-          </a>
+          </NuxtLink>
         </div>
 
         <div class="content-bottom-container-content-list">
@@ -40,7 +40,9 @@
                 class="content-bottom-container-content-list-card-content-link"
                 :href="item.link"
               >
-                <span class="content-bottom-container-content-list-card-content-link-ctr">
+                <span
+                  class="content-bottom-container-content-list-card-content-link-ctr"
+                >
                   {{ state.readmore }}
                 </span>
               </a>
@@ -53,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from '~/.nuxt/imports';
+import { reactive } from "~/.nuxt/imports";
 
 const state = reactive<{
   headline: string;

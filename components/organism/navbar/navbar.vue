@@ -59,7 +59,7 @@
               <input type="text" placeholder="Cari..." />
             </div>
             <div
-              class="grid-item bg-black rounded-r-[32px] text-white cursor-pointer"
+              class="grid-item bg-black rounded-r-[32px] text-white cursor-pointer text-center"
             >
               <NuxtLink to="/book/search">Cari</NuxtLink>
             </div>
@@ -69,13 +69,13 @@
           <div>
             <molecule-navbar-popup-notification />
           </div>
-          <a href="/cart" class="cursor-pointer">
+          <NuxtLink to="/cart" class="cursor-pointer">
             <img
               src="/static/img/general/icon/bag-black.webp"
               alt="search-icon"
               class="w-[24px] h-[24px]"
             />
-          </a>
+          </NuxtLink>
         </div>
       </div>
     </div>

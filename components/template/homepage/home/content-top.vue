@@ -6,12 +6,12 @@
           <h1 class="content-top-container-content-header-headline">
             {{ state.headline }}
           </h1>
-          <a
-            href="#"
+          <NuxtLink
             class="content-top-container-content-header-link"
+            to="book/search"
           >
             {{ state.readAllArticle }}
-          </a>
+          </NuxtLink>
         </div>
 
         <div class="content-top-container-content-list">
