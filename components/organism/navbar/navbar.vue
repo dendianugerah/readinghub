@@ -45,6 +45,18 @@
       <div class="navbar-bottom-container">
         <div class="navbar-bottom-container-title">
           <h1>ReadingHub</h1>
+          <div class="navbar-bottom-container-bar-mbl">
+            <div>
+              <molecule-navbar-popup-notification />
+            </div>
+            <NuxtLink to="/cart" class="cursor-pointer">
+              <img
+                src="/static/img/general/icon/bag-black.webp"
+                alt="search-icon"
+                class="w-[24px] h-[24px]"
+              />
+            </NuxtLink>
+          </div>
         </div>
         <div class="navbar-bottom-container-content">
           <div class="navbar-bottom-container-content-divider">
@@ -56,7 +68,7 @@
               </select>
             </div>
             <div class="grid-item">
-              <input type="text" placeholder="Cari..." />
+              <input type="text" placeholder="Cari..." :size="5"/>
             </div>
             <div
               class="grid-item bg-black rounded-r-[32px] text-white cursor-pointer text-center"
@@ -65,7 +77,7 @@
             </div>
           </div>
         </div>
-        <div class="navbar-bottom-container-bar">
+        <div class="navbar-bottom-container-bar-dekstop">
           <div>
             <molecule-navbar-popup-notification />
           </div>
@@ -94,6 +106,7 @@ const isLoggedIn = computed(() => {
 
 <style lang="postcss" scoped>
 .navbar {
+  @apply mx-[16px] xl:mx-0;
   &-container {
     @apply relative mx-auto h-full max-w-7xl items-center;
     &-upper {
@@ -118,7 +131,7 @@ const isLoggedIn = computed(() => {
     @apply 2xl:px-0;
 
     &-container {
-      @apply mx-auto max-w-7xl grid grid-cols-3;
+      @apply mx-auto max-w-7xl md:grid md:grid-cols-3 flex flex-col;
 
       &-content {
         &-divider {
@@ -126,12 +139,24 @@ const isLoggedIn = computed(() => {
         }
       }
 
+      &-title {
+        @apply flex justify-between mb-[20px] md:mb-0;
+      }
+
       h1 {
         @apply text-[24px] font-bold font-ptserif;
       }
 
       &-bar {
-        @apply flex justify-end gap-[30px];
+        @apply justify-end;
+
+        &-mbl {
+          @apply flex md:hidden gap-[10px];
+        }
+
+        &-dekstop {
+          @apply hidden md:flex justify-end gap-[30px];
+        }
       }
     }
   }
@@ -142,8 +167,7 @@ const isLoggedIn = computed(() => {
 }
 
 .grid-item {
-  flex-grow: 1;
-  padding: 10px;
+  @apply grow p-[5px] md:p-[10px];
 
   & > h1 {
     @apply text-[16px] font-ptserif;
@@ -159,12 +183,14 @@ const isLoggedIn = computed(() => {
   }
 }
 
-.grid-item:nth-child(1),
+.grid-item:nth-child(1) {
+  @apply basis-1;
+}
 .grid-item:nth-child(3) {
-  flex-basis: 20%;
+  @apply md:basis-1/5;
 }
 
 .grid-item:nth-child(2) {
-  flex-basis: 60%;
+  @apply basis-4/12 md:basis-3/5;
 }
 </style>

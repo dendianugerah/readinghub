@@ -23,7 +23,4 @@ useHead({
 
 <style scoped lang="postcss">
 
-.navbar {
-  @apply hidden lg:block;
-}
 </style>
