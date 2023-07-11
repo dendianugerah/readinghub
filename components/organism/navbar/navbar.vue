@@ -3,6 +3,64 @@
     <div class="navbar-container">
       <div class="navbar-container-upper">
         <div class="navbar-container-upper-left">
+          <!-- Mobile Menu -->
+          <div class="md:hidden flex items-center">
+            <button
+              @click="handleToggleModal"
+              class="outline-none mobile-menu-button"
+            >
+              <svg
+                class="w-6 h-6 text-gray-500"
+                x-show="!showMenu"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+          <div
+            v-if="isModalOpen"
+            @click="handleToggleModal"
+            class="mobile-menu-overlay"
+          >
+            <div class="mobile-menu-overlay-content">
+              <h1>ReadingHub</h1>
+              <div class="mobile-menu-overlay-content-bottom">
+                <NuxtLink
+                  to="/"
+                  :class="{
+                    active:
+                      $route.path == '/' ||
+                      $route.path.startsWith('/book') ||
+                      $route.path.startsWith('/cart'),
+                  }"
+                  >Beranda</NuxtLink
+                >
+                <NuxtLink
+                  to="/donation"
+                  :class="{ active: $route.path.startsWith('/donation') }"
+                  >Donasi</NuxtLink
+                >
+                <NuxtLink
+                  to="/about-us"
+                  :class="{ active: $route.path.startsWith('/about-us') }"
+                  >Tentang Kami</NuxtLink
+                >
+                <NuxtLink
+                  to="/contact-us"
+                  :class="{ active: $route.path.startsWith('/contact-us') }"
+                  >Kontak Kami</NuxtLink
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- End of mobile menu-->
           <NuxtLink
             to="/"
             class="navbar-link"
@@ -61,14 +119,16 @@
         <div class="navbar-bottom-container-content">
           <div class="navbar-bottom-container-content-divider">
             <div class="grid-item">
-              <select class="focus:outline-none bg-[#fafafa] cursor-pointer">
+              <select
+                class="focus:outline-none bg-[#fafafa] cursor-pointer border-none"
+              >
                 <option>Kategori</option>
                 <option>Multimedia</option>
                 <option>Hukum</option>
               </select>
             </div>
             <div class="grid-item">
-              <input type="text" placeholder="Cari..." :size="5"/>
+              <input type="text" placeholder="Cari..." :size="5" />
             </div>
             <div
               class="grid-item bg-black rounded-r-[32px] text-white cursor-pointer text-center"
@@ -102,18 +162,23 @@ const route = useRoute();
 const isLoggedIn = computed(() => {
   return route.path !== "/login" && route.path !== "/register";
 });
+
+const isModalOpen = ref(false);
+
+const handleToggleModal = () => {
+  isModalOpen.value = !isModalOpen.value;
+};
 </script>
 
 <style lang="postcss" scoped>
 .navbar {
-  @apply mx-[16px] xl:mx-0;
   &-container {
     @apply relative mx-auto h-full max-w-7xl items-center;
     &-upper {
-      @apply flex flex-row justify-between py-[14px];
+      @apply flex flex-row justify-between py-[14px] mx-[16px] xl:mx-0;
 
       &-left {
-        @apply cursor-pointer;
+        @apply flex cursor-pointer;
       }
 
       &-right {
@@ -121,7 +186,7 @@ const isLoggedIn = computed(() => {
       }
 
       .navbar-link {
-        @apply mr-[22px] hover:font-bold;
+        @apply mr-[22px] hover:font-bold hidden md:flex;
       }
     }
   }
@@ -131,7 +196,7 @@ const isLoggedIn = computed(() => {
     @apply 2xl:px-0;
 
     &-container {
-      @apply mx-auto max-w-7xl md:grid md:grid-cols-3 flex flex-col;
+      @apply mx-[16px] md:mx-auto max-w-7xl md:grid md:grid-cols-3 flex flex-col;
 
       &-content {
         &-divider {
@@ -158,6 +223,22 @@ const isLoggedIn = computed(() => {
           @apply hidden md:flex justify-end gap-[30px];
         }
       }
+    }
+  }
+}
+
+.mobile-menu-overlay {
+  @apply fixed inset-0 z-50 flex bg-black bg-opacity-50;
+
+  &-content {
+    @apply flex flex-col bg-white p-[20px] pr-[50px];
+
+    & > h1 {
+      @apply text-[24px] font-bold font-ptserif;
+    }
+
+    &-bottom {
+      @apply flex flex-col gap-[20px] mt-[20px];
     }
   }
 }
