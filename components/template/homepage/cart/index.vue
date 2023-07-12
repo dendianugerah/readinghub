@@ -140,7 +140,7 @@ const totalQuantity = computed(() => {
 
 <style scoped lang="postcss">
 .cart {
-  @apply pt-[64px] pb-[80px] mx-[18px] md:mx-[0px];
+  @apply pt-[64px] pb-[80px] mx-[16px] md:mx-[0px];
 
   &-container {
     @apply max-w-7xl mx-auto;

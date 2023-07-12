@@ -59,17 +59,18 @@ const state = reactive<{
 
 <style scoped lang="postcss">
 .donation-success {
-  @apply max-w-7xl mx-auto items-center justify-center mb-[80px];
+  @apply max-w-7xl mx-[16px] md:mx-auto items-center justify-center mb-[80px];
 
   &-head {
     @apply my-[58px] flex flex-col items-center font-ptserif;
+    @apply text-center;
 
     & > h1 {
       @apply text-[36px] font-bold mb-[11px];
     }
 
     & > p {
-      @apply font-robotoslab text-[20px] px-[230px] text-center;
+      @apply font-robotoslab text-[20px] md:px-[230px] text-center;
     }
 
     & > img {

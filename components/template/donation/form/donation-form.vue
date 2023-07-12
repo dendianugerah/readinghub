@@ -64,9 +64,11 @@ const decrement = () => {
 
 <style scoped lang="postcss">
 .donation-form {
-  @apply py-[80px];
+  @apply py-[80px] mx-[16px] md:mx-0;
+
   &-container {
     @apply mx-auto max-w-7xl flex items-center justify-center;
+
     &-card {
       @apply rounded-[24px] bg-white flex flex-col;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -81,7 +83,7 @@ const decrement = () => {
       }
 
       &-content {
-        @apply flex flex-col justify-center px-[70px];
+        @apply flex flex-col justify-center px-[60px] md:px-[70px];
 
         & > h1 {
           @apply font-robotoslab text-[18px] pb-[2px] pt-[18px];
@@ -101,7 +103,7 @@ const decrement = () => {
   @apply text-[24px];
 
   & > input {
-    @apply w-[380px] h-[20px] cursor-default;
+    @apply w-[180px] md:w-[380px] md:h-[20px] cursor-default;
     @apply text-[18px] text-center;
   }
 
