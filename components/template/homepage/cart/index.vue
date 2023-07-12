@@ -11,6 +11,15 @@
           >
             <div class="cart-container-wrapper-bag-card-image">
               <img :src="item.image" alt="" />
+              <div class="cart-container-wrapper-bag-card-btn-mobile">
+                <a class="cursor-pointer" @click="removeItem(index)">
+                  <img
+                    src="/static/img/homepage/cart/trash-can.png"
+                    alt="search-icon"
+                    class="self-end"
+                  />
+                </a>
+              </div>
             </div>
             <div class="cart-container-wrapper-bag-card-content">
               <h1>{{ item.title }}</h1>
@@ -26,7 +35,7 @@
                 <img
                   src="/static/img/homepage/cart/trash-can.png"
                   alt="search-icon"
-                  class="w-[36px] h-[18px] self-end"
+                  class="w-[50px] h-[18px] self-end"
                 />
               </a>
             </div>
@@ -102,7 +111,7 @@ const cartItems = ref([
   },
   {
     image: "/static/img/homepage/cart/book-4.png",
-  title: "Sebuah Seni untuk Bersikap Bodo Ahmad",
+    title: "Sebuah Seni untuk Bersikap Bodo Ahmad",
     description:
       "Hai, aku Dhito dan aku adalah seorang bodo amat. Aku hanya ingin hidupku bahagia dan tidak peduli dengan orang lain. Sampai suatu hari, aku bertemu dengan seseorang yang membuatku berpikir ulang tentang hidupku. Seseorang itu bernama Ahmad.",
     quantity: 1,
@@ -151,6 +160,7 @@ const totalQuantity = computed(() => {
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
           &-image {
+            @apply flex flex-row justify-between;
             @apply md:w-[450px] h-[154px] md:pr-[16px];
           }
 
@@ -180,6 +190,11 @@ const totalQuantity = computed(() => {
 
           &-button {
             @apply flex flex-col justify-end mb-[10px] md:mr-[14px];
+            @apply hidden md:flex;
+          }
+
+          &-btn-mobile {
+            @apply flex md:hidden justify-end mb-[10px] mt-[5px];
           }
         }
 
