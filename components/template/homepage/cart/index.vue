@@ -101,13 +101,6 @@ const cartItems = ref([
     quantity: 1,
   },
   {
-    image: "/static/img/homepage/cart/book-3.png",
-    title: "Pengenalan Bahasa Inggris untuk Anak-Anak",
-    description:
-      "IELTS, TOEFL, TOEIC, dan lain-lain. Apa itu semua? Aku, Novita. Aku akan membantumu untuk memahami bahasa Inggris dengan mudah. Ayo belajar bersama! Huahahahahahahahhaahhaahahhahahahahahhhahahahahhahahahahahhhahahahhahahahhahahaha",
-    quantity: 2,
-  },
-  {
     image: "/static/img/homepage/cart/book-4.png",
   title: "Sebuah Seni untuk Bersikap Bodo Ahmad",
     description:
@@ -138,7 +131,7 @@ const totalQuantity = computed(() => {
 
 <style scoped lang="postcss">
 .cart {
-  @apply pt-[64px] pb-[80px];
+  @apply pt-[64px] pb-[80px] mx-[18px] md:mx-[0px];
 
   &-container {
     @apply max-w-7xl mx-auto;
@@ -154,16 +147,16 @@ const totalQuantity = computed(() => {
         }
 
         &-card {
-          @apply rounded-[24px] bg-white flex flex-row py-[16px] px-[16px] mb-[16px];
+          @apply rounded-[24px] bg-white flex flex-col md:flex-row py-[16px] px-[16px] mb-[16px];
           box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
           &-image {
-            @apply w-[450px] h-[154px] pr-[16px];
+            @apply md:w-[450px] h-[154px] md:pr-[16px];
           }
 
           &-content {
             & > h1 {
-              @apply font-ptserif font-bold text-[16px] pb-[18px];
+              @apply font-ptserif font-bold text-[16px] mt-[18px] md:mt-[0px] md:pb-[18px];
             }
 
             & > p {
@@ -186,7 +179,7 @@ const totalQuantity = computed(() => {
           }
 
           &-button {
-            @apply flex flex-col justify-end mb-[10px] mr-[14px];
+            @apply flex flex-col justify-end mb-[10px] md:mr-[14px];
           }
         }
 

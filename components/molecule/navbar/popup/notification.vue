@@ -133,10 +133,10 @@ const handleReadAll = () => {
     z-index: 999;
 
     &-wrapper {
-      @apply absolute right-6 top-full w-[auto] rounded-[12px] pt-[14px];
+      @apply absolute right-0 md:right-6 top-full w-[auto] rounded-[12px] pt-[14px];
 
       &-body {
-        @apply flex w-[576px] gap-[24px] rounded-[12px] bg-white p-[20px];
+        @apply flex w-[320px] md:w-[576px] gap-[24px] rounded-[12px] bg-white p-[20px];
         box-shadow: 0px 0px 1px rgba(13, 17, 23, 0.15),
           0px 8px 10px -2px rgba(13, 17, 23, 0.1),
           0px 16px 25px -2px rgba(13, 17, 23, 0.1);
