@@ -135,12 +135,12 @@ const showDetails = (index: number, isHovering: boolean) => {
         @apply mb-[32px] flex flex-row items-center justify-between gap-[8px] md:text-center lg:mb-[80px];
 
         &-headline {
-          @apply text-[40px] leading-[50px] font-bold font-ptserif;
+          @apply text-[32px] leading-[25px] md:text-[40px] md:leading-[50px] font-bold font-ptserif;
           @apply select-text;
         }
 
         &-link {
-          @apply text-[24px] leading-[24px] underline;
+          @apply text-[16px] leading-[16px] md:text-[24px] md:leading-[24px] underline;
           @apply text-secondary;
         }
       }
